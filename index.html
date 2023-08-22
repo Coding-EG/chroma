@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" conten="width=device-width, initial-scale=1.0">
+    <title>liveVideoManipulation</title>
+    <link rel="stylesheet" href="./style.css">
+    <style type="text/css">
+    @import url(/style.css);
+    </style>
+	<script>
+	function defaultValue() {
+		document.getElementById("reset").reset();
+		edit();
+	}
+</script>
+
+</head>
+<body>
+       <div id="main">
+       <video id="canvas-reference"autoplay></video>
+       <canvas id="canvas"></canvas>
+	   </div>    
+       <!--video editing function-->
+       
+			<div id="editor"class="box1">
+				<div id="function">
+					<button class="button"onclick="defaultValue()">Reset To Default</button>
+					<button class="button">Start Recording</button>
+					<button class="button">Download Video</button>
+					<input type = "file"accept = "image/*"id = "background-image">
+
+			    </div>
+		      <div id="editor-value">
+			   <form id="reset">
+				<p>GreenValue</p>
+				<input type="range"id="greenValue"class="chroma"max="100"min="-10"value="0"step="1">
+			<span id="green">00</span>
+		<p>Blur</p>
+			<input type="range"id="blur1"class="data"max="10"min="0"value="0"step="0.1"onchange="edit()">
+		<span class="dataValue"id="blu"></span>
+				
+				<p>Brightness</p>
+			<input type="range"id="brig"class="data"max="2"min="0"value="1"step="0.01"onchange="edit()">
+		<span class="dataValue"id="bri"></span>
+				
+				<p>Contrast</p>
+			<input type="range"id="cont"class="data"max="2"min="0"value="1"step="0.01"onchange="edit()">
+		<span class="dataValue"id="con"></span>
+				
+				<p>Saturation</p>
+			<input type="range"id="satu"class="data"max="2"min="0"value="1"step="0.01"onchange="edit()">
+		<span class="dataValue"id="sat"></span>
+				
+				<p>DropShadow</p>
+			<input type="range"id="drop"class="data"max="10"min="0"value="0"step="0.1"onchange="edit()">
+		<span class="dataValue"id="dro"></span>
+				
+				<p>GreyScale</p>
+			<input type="range"id="grey"class="data"max="1"min="0"value="0"step="0.01"onchange="edit()">
+		<span class="dataValue"id="gre"></span>
+				
+				<p>HueRotate</p>
+			<input type="range"id="huer"class="data"max="180"min="-180"value="0"step="1"onchange="edit()">
+		<span class="dataValue"id="hue"></span>
+				
+				<p>Invert</p>
+			<input type="range"id="inve"class="data"max="1"min="0"value="0"step="0.01"onchange="edit()">
+		<span class="dataValue"id="inv"></span>
+				
+			
+				<p>Sepia</p>
+			<input type="range"id="sepi"class="data"max="1"min="0"value="0"step="0.01"onchange="edit()">
+		<span class="dataValue"id="sep"></span>
+				
+				<p>Opacity</p>
+			<input type="range"id="opac"class="data"max="1"min="0"value="1"step="0.01"onchange="edit()">
+		   <span class="dataValue"id="opa"></span>
+       
+            </form>
+			  </div>
+        </div>
+</body>
+<script src="./script.js">
+
+</script>
+</html>
