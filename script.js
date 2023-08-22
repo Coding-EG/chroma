@@ -97,7 +97,7 @@ function videoManipulation() {
         ")";
 
       //requestAnimationFrame(canvasManipulation);
-      setInterval(40,canvasManipulation);
+      setInterval(canvasManipulation,40);
     }
     canvasManipulation();
   };
