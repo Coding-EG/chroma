@@ -3,8 +3,8 @@ downloadVideo = document.getElementById("download-video");
 videoReference = document.getElementById("canvas-reference");
 let backGround = document.querySelector("#background-image");
 canvas = document.getElementById("canvas");
-canvas.width = 1920;
-canvas.height = 1080;
+canvas.width = 400;
+canvas.height = 400;
 let ranges = [];
 // video stream from camera
 function videoFromCamera() {
@@ -35,7 +35,7 @@ function videoManipulation() {
 
   videoReference.onplay = () => {
     function canvasManipulation() {
-      ctx.drawImage(videoReference, 0, 0, 1920, 1080);
+      ctx.drawImage(videoReference, 0, 0, 400, 400);
       let pixels = ctx.getImageData(0, 0, canvas.width, canvas.height);
       let pixelsData = pixels.data;
       // to edit video data use for loop
@@ -156,7 +156,7 @@ mediaRecord.ondataavailable = (e) => {
         }*/
 function recordVideo() {
   //  if (mediaRecord.state == "recording") return
-  mediaRecord.start(35);
+  mediaRecord.start(40);
   // console.log(mediaRecord.stream)
   // console.log("run1");
   // console.log(mediaRecord);
@@ -166,7 +166,7 @@ function recordVideo() {
 function downloadRecordedVideo() {
   mediaRecord.stop();
   link.href = URL.createObjectURL(
-    new Blob(recordedVideo, { type: "video/gif" })
+    new Blob(recordedVideo, { type: "video\/mp4" })
   );
   link.download = "success";
   link.click();
@@ -185,12 +185,12 @@ function addBackground(event) {
     new Blob(backGroundBlob, { type: "image/png" })
   );
   let imgCanvas = document.createElement("canvas");
-  imgCanvas.height = 1920;
-  imgCanvas.width = 1080;
+  imgCanvas.height = 400;
+  imgCanvas.width = 400;
   let imgCtx = imgCanvas.getContext("2d");
   imgPre.onload = () => {
-    imgCtx.drawImage(imgPre, 0, 0, 1920, 1080);
-    let img = imgCtx.getImageData(0, 0, 1920, 1080);
+    imgCtx.drawImage(imgPre, 0, 0, 400, 400);
+    let img = imgCtx.getImageData(0, 0, 400, 400);
     imgData = img.data;
   };
 }
