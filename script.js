@@ -96,7 +96,7 @@ function videoManipulation() {
         ranges[9] +
         ")";
 
-      //requestAnimationFrame(canvasManipulation);
+      // requestAnimationFrame(canvasManipulation);
       setInterval(canvasManipulation,40);
     }
     canvasManipulation();
@@ -136,37 +136,34 @@ const link = document.createElement("a");
 let eventButton = document.getElementsByClassName("button");
 eventButton[1].addEventListener("click", recordVideo);
 eventButton[2].addEventListener("click", downloadRecordedVideo);
-let streamReference = canvas.captureStream();
-const mediaRecord = new MediaRecorder(streamReference);
-mediaRecord.ondataavailable = (e) => {
-  //console.log("hi");
-  if (e.data.size > 0) {
-    recordedVideo.push(e.data);
-  }
-};
+let mediaRecord;
+async function recordVideo() {
+  const streamReference = canvas.captureStream();
+  // const mediaRecord = new MediaRecorder(streamReference);
+  const audioStream =await navigator.mediaDevices.getUserMedia({ audio: true }); // Capture audio stream from microphone
 
-/* function recordVideo() {
-        
-          mediaRecord.ondataavailable = (e)=> {
-            if(e.data.size > 0) {
-                recordedVideo.push(e.data);
-                console.log("hi");
-            }
-            
-        }*/
-function recordVideo() {
-  //  if (mediaRecord.state == "recording") return
+  const combinedStream = new MediaStream([
+    ...streamReference.getTracks(),
+    ...audioStream.getTracks(),
+  ]);
+
+  mediaRecord = new MediaRecorder(combinedStream);
+
   mediaRecord.start(40);
-  // console.log(mediaRecord.stream)
-  // console.log("run1");
-  // console.log(mediaRecord);
+  mediaRecord.ondataavailable = (e) => {
+    //console.log("hi");
+    if (e.data.size > 0) {
+      recordedVideo.push(e.data);
+    }
+  };
 }
 
-// download video
+
+
 function downloadRecordedVideo() {
   mediaRecord.stop();
   link.href = URL.createObjectURL(
-    new Blob(recordedVideo, { type: "video\/mp4" })
+    new Blob(recordedVideo, { type: "video/webm" })
   );
   link.download = "success";
   link.click();
