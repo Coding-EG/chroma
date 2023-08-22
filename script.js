@@ -12,7 +12,7 @@ function videoFromCamera() {
   navigator.mediaDevices
     .getUserMedia({
       video: true,
-      audio: false,
+      audio: true,
     })
     .then((stream) => (videoReference.srcObject = stream))
     .catch((error) => console.error(error));
@@ -96,7 +96,8 @@ function videoManipulation() {
         ranges[9] +
         ")";
 
-      requestAnimationFrame(canvasManipulation);
+      //requestAnimationFrame(canvasManipulation);
+      setInterval(40,canvasManipulation);
     }
     canvasManipulation();
   };
